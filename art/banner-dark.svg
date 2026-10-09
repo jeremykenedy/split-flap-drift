@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" role="img" aria-labelledby="title desc">
+  <title id="title">Split-Flap Drift</title>
+  <desc id="desc">A softly animated split-flap clock with no ads, analytics, tracking, or network access.</desc>
+  <defs><linearGradient id="background" x2="1" y2="1"><stop stop-color="#0c0a09"/><stop offset="1" stop-color="#1c1917"/></linearGradient></defs>
+  <rect width="800" height="200" rx="16" fill="url(#background)" stroke="#292524"/>
+  <text x="40" y="80" fill="#fff" font-family="system-ui,-apple-system,'Segoe UI',sans-serif" font-size="40" font-weight="700" letter-spacing="-.5">Split-Flap Drift</text>
+  <text x="42" y="108" fill="#a8a29e" font-family="system-ui,-apple-system,'Segoe UI',sans-serif" font-size="14">A quiet, animated clock. No tracking or analytics of any kind.</text>
+  <g font-family="system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="500" text-anchor="middle">
+    <rect x="40" y="128" width="78" height="22" rx="11" fill="#1a1a1a" opacity=".8" stroke="#a8a29e" stroke-width=".8"/><text x="79" y="143" fill="#d6d3d1">Animated</text>
+    <rect x="126" y="128" width="72" height="22" rx="11" fill="#1a1a1a" opacity=".8" stroke="#60a5fa" stroke-width=".8"/><text x="162" y="143" fill="#60a5fa">Offline</text>
+    <rect x="206" y="128" width="91" height="22" rx="11" fill="#1a1a1a" opacity=".8" stroke="#4ade80" stroke-width=".8"/><text x="251" y="143" fill="#4ade80">No tracking</text>
+    <rect x="305" y="128" width="108" height="22" rx="11" fill="#1a1a1a" opacity=".8" stroke="#fbbf24" stroke-width=".8"/><text x="359" y="143" fill="#fbbf24">No analytics</text>
+  </g>
+  <g transform="translate(562 28)"><rect width="206" height="144" rx="14" fill="#101418"/><g fill="#252a2e"><rect x="14" y="15" width="75" height="114" rx="5"/><rect x="117" y="15" width="75" height="114" rx="5"/></g><g fill="#eee8d9" font-family="sans-serif" font-size="95" font-weight="bold" text-anchor="middle"><text x="51" y="100">1</text><text x="154" y="100">2</text></g><path d="M14 72h75m28 0h75" stroke="#070809" stroke-width="4"/></g>
+</svg>

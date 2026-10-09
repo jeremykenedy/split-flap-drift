@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" role="img" aria-labelledby="title desc">
+  <title id="title">Split-Flap Drift</title>
+  <desc id="desc">A softly animated split-flap clock with no ads, analytics, tracking, or network access.</desc>
+  <rect width="800" height="200" rx="16" fill="#fff" stroke="#e5e7eb"/>
+  <text x="40" y="80" fill="#0f172a" font-family="system-ui,-apple-system,'Segoe UI',sans-serif" font-size="40" font-weight="700" letter-spacing="-.5">Split-Flap Drift</text>
+  <text x="42" y="108" fill="#64748b" font-family="system-ui,-apple-system,'Segoe UI',sans-serif" font-size="14">A quiet, animated clock. No tracking or analytics of any kind.</text>
+  <g font-family="system-ui,-apple-system,'Segoe UI',sans-serif" font-size="10" font-weight="500" text-anchor="middle">
+    <rect x="40" y="128" width="78" height="22" rx="11" fill="#f5f3f3" stroke="#d6d3d1" stroke-width=".8"/><text x="79" y="143" fill="#44403c">Animated</text>
+    <rect x="126" y="128" width="72" height="22" rx="11" fill="#eff6ff" stroke="#93c5fd" stroke-width=".8"/><text x="162" y="143" fill="#1e40af">Offline</text>
+    <rect x="206" y="128" width="91" height="22" rx="11" fill="#f0fdf4" stroke="#86efac" stroke-width=".8"/><text x="251" y="143" fill="#166534">No tracking</text>
+    <rect x="305" y="128" width="108" height="22" rx="11" fill="#fffbeb" stroke="#fcd34d" stroke-width=".8"/><text x="359" y="143" fill="#b45309">No analytics</text>
+  </g>
+  <g transform="translate(562 28)"><rect width="206" height="144" rx="14" fill="#101418"/><g fill="#252a2e"><rect x="14" y="15" width="75" height="114" rx="5"/><rect x="117" y="15" width="75" height="114" rx="5"/></g><g fill="#eee8d9" font-family="sans-serif" font-size="95" font-weight="bold" text-anchor="middle"><text x="51" y="100">1</text><text x="154" y="100">2</text></g><path d="M14 72h75m28 0h75" stroke="#070809" stroke-width="4"/></g>
+</svg>
