@@ -44,7 +44,8 @@ public final class SplitFlapSettingsProvider extends ContentProvider {
     public Bundle call(String method, String arg, Bundle extras) {
         if ("get_schema".equals(method)) return result(schema());
         SplitFlapPreferences preferences = new SplitFlapPreferences(getContext());
-        if ("get_settings".equals(method)) return result(settings(preferences.read()));
+        if ("get_settings".equals(method))
+            return result(settings(preferences.read(), preferences.showClock()));
         if ("set_random_all".equals(method) || "set_random_none".equals(method)) {
             SplitFlapOptions o = preferences.read();
             int mask = "set_random_all".equals(method) ? 255 : 0;
@@ -59,13 +60,13 @@ public final class SplitFlapSettingsProvider extends ContentProvider {
                             o.scale,
                             o.brightness,
                             mask));
-            return result(settings(preferences.read()));
+            return result(settings(preferences.read(), preferences.showClock()));
         }
         if ("set_setting".equals(method)) {
             if (extras == null || !extras.containsKey("value"))
                 throw new IllegalArgumentException("Missing setting value.");
             preferences.set(arg, extras.getString("value"));
-            return result(settings(preferences.read()));
+            return result(settings(preferences.read(), preferences.showClock()));
         }
         throw new IllegalArgumentException("Unsupported settings method: " + method);
     }
@@ -95,6 +96,7 @@ public final class SplitFlapSettingsProvider extends ContentProvider {
                 + number("scale", 4, 1, 5)
                 + ","
                 + number("brightness", 4, 1, 5)
+                + ",{\"key\":\"show_clock\",\"type\":\"boolean\",\"default\":true,\"random\":false}"
                 + "]}";
     }
 
@@ -132,24 +134,26 @@ public final class SplitFlapSettingsProvider extends ContentProvider {
                 + ",\"random\":true}";
     }
 
-    static String settings(SplitFlapOptions o) {
-        return "{\"schemaVersion\":1,\"format\":\""
-                + val(o, 1, SplitFlapOptions.FORMATS[o.format])
-                + "\",\"palette\":\""
-                + val(o, 2, SplitFlapOptions.PALETTES[o.palette])
-                + "\",\"flipSpeed\":\""
-                + val(o, 4, Integer.toString(o.flipSpeed))
-                + "\",\"date\":\""
-                + val(o, 8, Boolean.toString(o.date))
-                + "\",\"seconds\":\""
-                + val(o, 16, Boolean.toString(o.seconds))
-                + "\",\"lighting\":\""
-                + val(o, 32, SplitFlapOptions.LIGHTING[o.lighting])
-                + "\",\"scale\":\""
-                + val(o, 64, Integer.toString(o.scale))
-                + "\",\"brightness\":\""
-                + val(o, 128, Integer.toString(o.brightness))
-                + "\"}";
+    static String settings(SplitFlapOptions o, boolean showClock) {
+        String scene =
+                "{\"schemaVersion\":1,\"format\":\""
+                        + val(o, 1, SplitFlapOptions.FORMATS[o.format])
+                        + "\",\"palette\":\""
+                        + val(o, 2, SplitFlapOptions.PALETTES[o.palette])
+                        + "\",\"flipSpeed\":\""
+                        + val(o, 4, Integer.toString(o.flipSpeed))
+                        + "\",\"date\":\""
+                        + val(o, 8, Boolean.toString(o.date))
+                        + "\",\"seconds\":\""
+                        + val(o, 16, Boolean.toString(o.seconds))
+                        + "\",\"lighting\":\""
+                        + val(o, 32, SplitFlapOptions.LIGHTING[o.lighting])
+                        + "\",\"scale\":\""
+                        + val(o, 64, Integer.toString(o.scale))
+                        + "\",\"brightness\":\""
+                        + val(o, 128, Integer.toString(o.brightness))
+                        + "\"}";
+        return scene.substring(0, scene.length() - 1) + ",\"show_clock\":" + showClock + "}";
     }
 
     private static String val(SplitFlapOptions o, int bit, String value) {

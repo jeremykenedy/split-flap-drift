@@ -32,6 +32,7 @@ final class SplitFlapSceneView extends View {
             };
     private SplitFlapOptions options;
     private boolean running;
+    private boolean showClock;
     private final long started = System.currentTimeMillis();
     private long changedAt;
     private String lastDigits = "";
@@ -39,11 +40,13 @@ final class SplitFlapSceneView extends View {
     SplitFlapSceneView(Context context, SplitFlapOptions options) {
         super(context);
         this.options = options;
+        showClock = new SplitFlapPreferences(context).showClock();
         setFocusable(true);
     }
 
     void configure(SplitFlapOptions value) {
         options = value;
+        showClock = new SplitFlapPreferences(getContext()).showClock();
         invalidate();
     }
 
@@ -139,7 +142,7 @@ final class SplitFlapSceneView extends View {
         float x = left + (paneW - width) / 2f;
         float y = top + 32 * scale;
         int digitIndex = 0;
-        for (int i = 0; i < clock.length(); i++) {
+        for (int i = 0; showClock && i < clock.length(); i++) {
             char ch = clock.charAt(i);
             if (ch == ':') {
                 paint.setColor(ink);
@@ -153,7 +156,7 @@ final class SplitFlapSceneView extends View {
             drawDigit(canvas, x, y, digitW, digitH, ch, ink, panel, scale, now, digitIndex++);
             x += digitW + gap;
         }
-        if (options.date) {
+        if (showClock && options.date) {
             paint.setColor(ink);
             paint.setAlpha(190);
             paint.setTextAlign(Paint.Align.CENTER);

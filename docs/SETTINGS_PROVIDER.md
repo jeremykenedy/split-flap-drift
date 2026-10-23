@@ -6,7 +6,7 @@ Host applications can discover and edit app preferences through the exported loc
 - Provider: `com.jeremykenedy.splitflapdrift.SplitFlapSettingsProvider`
 - Schema version: `1`
 
-Call `ContentResolver.call()` with a URI for this authority. `get_schema` and `get_settings` return JSON in a Bundle field named `json`. Use `set_setting` with the setting name as the method argument and a string `value` in extras. Supported values and bounds are defined by the schema. `set_random_all` and `set_random_none` control all supported fields. Random choices resolve once when a screensaver showing starts.
+Call `ContentResolver.call()` with a URI for this authority. `get_schema` and `get_settings` return JSON in a Bundle field named `json`. Use `set_setting` with the setting name as the method argument and a string `value` in extras. Supported values and bounds are defined by the schema. `set_random_all` and `set_random_none` control the eight randomized style fields. Random choices resolve once when a screensaver showing starts.
 
 | Setting key | Type | Values |
 |---|---|---|
@@ -19,4 +19,6 @@ Call `ContentResolver.call()` with a URI for this authority. `get_schema` and `g
 | `scale` | integer | 1 through 5 |
 | `brightness` | integer | 1 through 5 |
 
-Each setting also accepts `Random`. Unknown keys, choices, and methods fail with `IllegalArgumentException`. Changes apply the next time the scene is opened.
+Style settings also accept `Random`. Unknown keys, choices, and methods fail with `IllegalArgumentException`. Changes apply the next time the scene is opened.
+
+`show_clock` accepts only `true` or `false`. Its schema default is `true` and `random=false`. It is returned as a JSON boolean. Bulk randomization preserves this independent visibility setting. Invalid values fail without changing the saved choice.

@@ -39,7 +39,21 @@ final class SplitFlapPreferences {
                 .apply();
     }
 
+    boolean showClock() {
+        return values.getBoolean("show_clock", true);
+    }
+
+    void setShowClock(boolean visible) {
+        values.edit().putBoolean("show_clock", visible).apply();
+    }
+
     void set(String key, String value) {
+        if ("show_clock".equals(key)) {
+            if (!"true".equals(value) && !"false".equals(value))
+                throw new IllegalArgumentException("Clock visibility must be true or false");
+            setShowClock(Boolean.parseBoolean(value));
+            return;
+        }
         SplitFlapOptions old = read();
         int format = old.format, palette = old.palette, speed = old.flipSpeed;
         int lighting = old.lighting,
