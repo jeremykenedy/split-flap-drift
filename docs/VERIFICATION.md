@@ -14,3 +14,9 @@ The app built as a signed APK with Android SDK platform 36 and build-tools 36.0.
 | Google TV hardware | Untested; no device was available | Not measured | Looking for a Google TV owner to test and report the model, OS/API, resolution, tested behavior, and results in the repository issue tracker. |
 
 The emulator run does not verify OEM selection menus, idle activation, physical remote behavior, 4K composition, or sustained thermal performance. Native 4K output is not claimed; the view uses Android's provided surface size.
+
+## Optional clock regression, 2026-10-22
+
+An isolated Android TV emulator fixture compiled the production scene and provider classes from this change. The combined five-app run passed 123 actual Canvas/provider assertions. It checked the existing appearance default (ON), explicit ON/OFF under scene randomization, portable boolean storage and schema, and invalid-write retention. OFF produced zero time/date/seconds text draws while the scene remained drawn. Seconds, date and colon-dot paths were explicitly exercised.
+
+This isolated regression does not establish production DreamService binding, physical-TV performance or acceptance of the existing artwork. Signed release and both-TV installation gates remain pending.
